@@ -10,7 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count+1)/2)
+    lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+    
+    var numberOfPairsOfCards: Int{
+        get{
+            return (cardButtons.count+1) / 2
+        }
+    }
     
     
     @IBOutlet weak var flipCountLabel: UILabel!
@@ -56,12 +62,27 @@ class ViewController: UIViewController {
     
     func emoji(for card: Card) -> String {
         if emoji[card.id] == nil, emojiList.count > 0 {
-          let randomINdex = Int(arc4random_uniform(UInt32(emojiList.count)))
-          emoji[card.id] = emojiList.remove(at: randomINdex)
+          emoji[card.id] = emojiList.remove(at: emojiList.count.arc4random)
         }
         
         return emoji[card.id] ?? "?"
     }
-    
+
 }
+
+extension Int{
+    var arc4random: Int{
+        if self>0{
+            return Int(arc4random_uniform(UInt32(self)))
+        }
+        else if self<0 {
+            return Int(arc4random_uniform(UInt32(abs(self))))
+        } else {
+            return 0
+        }
+    }
+}
+
+
+
 
