@@ -36,10 +36,13 @@ class Concentration{
     
     func chooseCard(at index: Int){
         if !cards[index].isMatched{
+            print("---> The index is : \(index)")
+            print("---> The Face up index is : \(indexOfOneAndOnlyFaceUpCard ?? -1)")
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index{
                 if cards[matchIndex].id  == cards[index].id{
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
+                    
                 }
                 cards[index].isFaceUp = true
             }
@@ -55,6 +58,15 @@ class Concentration{
         let card = Card()
         cards.append(card)
         cards.append(card)
+        }
+        var totalCards =  cards.count-1
+        for _ in 0...totalCards{
+            let randIndex = Int(arc4random_uniform(UInt32(totalCards-1)))
+            cards.swapAt(randIndex, totalCards)
+            totalCards = totalCards-1
+            if totalCards == 1{
+                return
+            }
         }
         
         // TODO: shuffle the cards
