@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class ViewController: UIViewController {
 
@@ -18,6 +19,8 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var newGameButton: UIButton!
+    
     
     @IBOutlet weak var flipCountLabel: UILabel!
     
@@ -25,49 +28,28 @@ class ViewController: UIViewController {
     
     private var themeEmojiList = [String]()
     private var themeColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    private var backgroundThemeColor: UIColor!
     var emoji = [Int:String]()
     
-    var flipcount = 0 {
+    var score = 0 {
         didSet {
-            flipCountLabel.text = "Flips : \(flipcount)"
+            if score < 0{
+                flipCountLabel.text = "Score : \(score)"
+            }else{
+                flipCountLabel.text = "Score : \(score)"
+            }
         }
     }
     
     //MARK: overriding functions
     
     override func viewDidLoad() {
-        game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
-        let currentThemeId = 3.arc4random
-        switch currentThemeId {
-        case 0:
-            themeEmojiList = ["🤡","😈","👽","💀","👹","💩","🖕🏻","☠️","👻","🎃"]
-            themeColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
-            view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        case 1:
-            themeEmojiList = ["🤤", "😴", "😑", "🤯", "🤪", "🤓", "😕", "😤", "🤩", "😝"]
-            themeColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
-            view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        case 2:
-            themeEmojiList = ["⚽️", "🏀", "🏈", "⚾️", "🎾", "🏐", "🏉", "🎱", "🏓", "🏸"]
-            themeColor = #colorLiteral(red: 0.1287704581, green: 1, blue: 0.1195366907, alpha: 1)
-            view.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
-        default:
-            themeEmojiList = ["⚽️", "🏀", "🏈", "⚾️", "🎾", "🏐", "🏉", "🎱", "🏓", "🏸"]
-            themeColor = #colorLiteral(red: 0.1287704581, green: 1, blue: 0.1195366907, alpha: 1)
-            view.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
-        }
-        for button in cardButtons{
-            button.backgroundColor = themeColor
-        }
+        updateNewGameView()
     }
-    
-    
-    
-    
+
     //MARK: Action methods
     
     @IBAction func touchCard(_ sender: UIButton) {
-        flipcount = flipcount + 1
         if let cardNumber = cardButtons.index(of: sender){
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
@@ -78,7 +60,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func startNewGame(_ sender: UIButton) {
-        flipcount = 0
+//        Crashlytics.sharedInstance().crash()
+        score = 0
+
         let cards = game.cards
         for (index, card) in cards.enumerated(){
             if card.isFaceUp {
@@ -89,26 +73,59 @@ class ViewController: UIViewController {
             button.isEnabled = true
             return button
         })
-        viewDidLoad()
+        updateNewGameView()
     }
     
     // MARK: Private functions
+    private func updateNewGameView(){
+        newGameButton.layer.borderWidth = 2.0
+        newGameButton.layer.cornerRadius = 5.0
+        game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+        let currentThemeId = 3.arc4random
+        switch currentThemeId {
+        case 0:
+            themeEmojiList = ["🤡","😈","👽","💀","👹","💩","🖕🏻","☠️","👻","🎃"]
+            themeColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+            backgroundThemeColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        case 1:
+            themeEmojiList = ["🤤", "😴", "😑", "🤯", "🤪", "🤓", "😕", "😤", "🤩", "😝"]
+            themeColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+            backgroundThemeColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
+        default:
+            themeEmojiList = ["⚽️", "🏀", "🏈", "⚾️", "🎾", "🏐", "🏉", "🎱", "🏓", "🏸"]
+            themeColor = #colorLiteral(red: 0.1287704581, green: 1, blue: 0.1195366907, alpha: 1)
+            backgroundThemeColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
+        }
+        for button in cardButtons{
+            button.backgroundColor = themeColor
+            button.layer.cornerRadius = 10.0
+        }
+        view.backgroundColor = backgroundThemeColor
+        newGameButton.layer.borderColor = themeColor.cgColor
+        newGameButton.setTitleColor(themeColor, for: UIControlState.normal)
+        flipCountLabel.textColor = themeColor
+    }
+    
     private func updateViewFromModel(){
         for index in cardButtons.indices{
             let button = cardButtons[index]
             let card = game.cards[index]
             if card.isFaceUp {
+                score = score - 1
                 button.setTitle(emoji(for: card), for: UIControlState.normal)
-                button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                button.backgroundColor = backgroundThemeColor
+                button.layer.borderWidth = 2.0
+                button.layer.borderColor = themeColor.cgColor
             }
             else{
                 button.setTitle("", for: UIControlState.normal)
                 if card.isMatched{
-                button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
-                button.isEnabled = false
+                    score = score + 5
+                    button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
+                    button.isEnabled = false
                 }
                 else{
-                button.backgroundColor = themeColor
+                    button.backgroundColor = themeColor
                 }
             }
         }
@@ -116,7 +133,8 @@ class ViewController: UIViewController {
     
     private func emoji(for card: Card) -> String {
         if emoji[card.id] == nil, themeEmojiList.count > 0 {
-          emoji[card.id] = themeEmojiList.remove(at: themeEmojiList.count.arc4random)
+            emoji[card.id] = themeEmojiList.remove(at: themeEmojiList.count.arc4random)
+            print("Count ---> \(themeEmojiList.count)")
         }
         return emoji[card.id] ?? "?"
     }

@@ -19,8 +19,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O2M-yh-MW4">
+                                <rect key="frame" x="16" y="60" width="343" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <state key="normal" title="New Game">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="startNewGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LYo-0q-OMt"/>
+                                </connections>
+                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Zr2-Im-EWN">
-                                <rect key="frame" x="16" y="64" width="343" height="422"/>
+                                <rect key="frame" x="16" y="146" width="343" height="422"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qK1-gF-kOU">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="78"/>
@@ -209,44 +219,30 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6b-uT-8en">
-                                <rect key="frame" x="228" y="538" width="0.0" height="0.0"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flip:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3e-vZ-eAx">
-                                <rect key="frame" x="147.33333333333334" y="724" width="80.333333333333343" height="54"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3e-vZ-eAx">
+                                <rect key="frame" x="0.0" y="703" width="375" height="55"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
-                                <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O2M-yh-MW4">
-                                <rect key="frame" x="16" y="638" width="343" height="66"/>
-                                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
-                                <state key="normal" title="New Game">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="startNewGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LYo-0q-OMt"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="g3e-vZ-eAx" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="0C7-jO-WEc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="O2M-yh-MW4" secondAttribute="trailing" constant="16" id="1Do-1J-mj9"/>
-                            <constraint firstItem="g3e-vZ-eAx" firstAttribute="top" secondItem="O2M-yh-MW4" secondAttribute="bottom" constant="20" id="1iu-kY-9ph"/>
+                            <constraint firstItem="O2M-yh-MW4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="25J-vd-kf1"/>
                             <constraint firstItem="Zr2-Im-EWN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="CN5-ci-HZ7"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="g3e-vZ-eAx" secondAttribute="bottom" id="MkL-ER-WvE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="g3e-vZ-eAx" secondAttribute="trailing" id="I5l-kf-jTe"/>
+                            <constraint firstItem="Zr2-Im-EWN" firstAttribute="top" secondItem="O2M-yh-MW4" secondAttribute="bottom" constant="20" id="Mhr-a0-5Fm"/>
                             <constraint firstItem="O2M-yh-MW4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="SOV-zW-QM0"/>
-                            <constraint firstItem="O2M-yh-MW4" firstAttribute="top" secondItem="Zr2-Im-EWN" secondAttribute="bottom" constant="152" id="ZgN-OE-fnd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Zr2-Im-EWN" secondAttribute="trailing" constant="16" id="aAC-cU-FH9"/>
-                            <constraint firstItem="g3e-vZ-eAx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Zr2-Im-EWN" secondAttribute="bottom" constant="20" id="uKt-40-Gqw"/>
+                            <constraint firstItem="g3e-vZ-eAx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dQm-Nh-5QF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="g3e-vZ-eAx" secondAttribute="bottom" constant="20" id="gMi-dO-pQx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="flipCountLabel" destination="g3e-vZ-eAx" id="Xs3-sn-YbF"/>
+                        <outlet property="newGameButton" destination="O2M-yh-MW4" id="hGc-kv-QDo"/>
                         <outletCollection property="cardButtons" destination="FiW-Ly-DxV" collectionClass="NSMutableArray" id="kxn-lB-Jp4"/>
                         <outletCollection property="cardButtons" destination="Ic4-hg-bPx" collectionClass="NSMutableArray" id="psq-FA-59H"/>
                         <outletCollection property="cardButtons" destination="Nqc-co-NUV" collectionClass="NSMutableArray" id="av8-Uf-mM1"/>

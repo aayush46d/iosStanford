@@ -26,6 +26,8 @@
 		1369744F209B818B0024A3CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13697452209B818B0024A3CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		13697454209B818B0024A3CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B4CD1A35D29A824EC429029 /* Pods-Concentration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Concentration.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Concentration/Pods-Concentration.debug.xcconfig"; sourceTree = "<group>"; };
+		9C6B347D2B072CC980FDA7C2 /* Pods-Concentration.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Concentration.release.xcconfig"; path = "Pods/Target Support Files/Pods-Concentration/Pods-Concentration.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +46,8 @@
 			children = (
 				13697447209B818B0024A3CF /* Concentration */,
 				13697446209B818B0024A3CF /* Products */,
+				E693FF9FAF824694D65C749B /* Pods */,
+				C7331208710337585925B5A9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +74,22 @@
 			path = Concentration;
 			sourceTree = "<group>";
 		};
+		C7331208710337585925B5A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E693FF9FAF824694D65C749B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2B4CD1A35D29A824EC429029 /* Pods-Concentration.debug.xcconfig */,
+				9C6B347D2B072CC980FDA7C2 /* Pods-Concentration.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +97,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13697457209B818B0024A3CF /* Build configuration list for PBXNativeTarget "Concentration" */;
 			buildPhases = (
+				30F76DA7049F2B352E5BF7A7 /* [CP] Check Pods Manifest.lock */,
 				13697441209B818B0024A3CF /* Sources */,
 				13697442209B818B0024A3CF /* Frameworks */,
 				13697443209B818B0024A3CF /* Resources */,
+				D6613C6A373F24E25F01C4B2 /* [CP] Embed Pods Frameworks */,
+				3B36E41C0262CB8F76BD6DEE /* [CP] Copy Pods Resources */,
+				8B1E3D2420AA2EA30075DC56 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -136,6 +160,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		30F76DA7049F2B352E5BF7A7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Concentration-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3B36E41C0262CB8F76BD6DEE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Concentration/Pods-Concentration-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B1E3D2420AA2EA30075DC56 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 2bcaeb7cd387b90b7152979d8792d6eb264c53b5 38e901e07fb0588e1ec0ac058299891aff2708e1503c0942bb7b8680348825f1";
+		};
+		D6613C6A373F24E25F01C4B2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Concentration/Pods-Concentration-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		13697441209B818B0024A3CF /* Sources */ = {
@@ -280,9 +368,11 @@
 		};
 		13697458209B818B0024A3CF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B4CD1A35D29A824EC429029 /* Pods-Concentration.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = Concentration/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = srivastava.aa.huky.neu.edu.Concentration;
@@ -294,6 +384,7 @@
 		};
 		13697459209B818B0024A3CF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C6B347D2B072CC980FDA7C2 /* Pods-Concentration.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
